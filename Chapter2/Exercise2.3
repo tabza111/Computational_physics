@@ -1,0 +1,10 @@
+'''Exercise:2.3: Write a program to perform the inverse operation to that o example 2.2. That is, ask the user for the Cartesian coordinates x, y of a point in two-dimensional space, and calculate and print the corresponding polar coordinates, with the angle theta given in degrees '''
+
+from math import sqrt as sqt, atan, pi
+x=float(input("Enter x:")
+y=float(input("Enter y:"))
+
+r=sqt(x**2+y**2)
+theta=atan(y/x)  # from radian to degree
+theta_deg=theta*180/pi
+print("r=",r,"Theta=",theta_deg,"\u00b0")
