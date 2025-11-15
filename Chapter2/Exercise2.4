@@ -1,0 +1,57 @@
+'''Exercise:2.4: A spaceship travels from earth in a straight line at relativistic speed v to another planet x light years away. Write a program to ask the user the value of x and the speed v as a fraction of speed of light c, then print out the time in years to reach its destination. (a) In the rest frame of the obserber on earth and (b) as perceived by a passenger on board the ship. Use your program to calculate the answers for a planet 10 light years away with v=0.99c'''
+
+import math
+
+def calculate_relativistic_travel_time():
+    """
+    Calculates the time taken for a relativistic journey as observed from Earth
+    and as perceived by the passenger on the ship (proper time).
+
+    The formulas used are:
+    (a) Earth Frame Time (t_E) = Distance (x) / Speed (v/c)
+    (b) Ship Frame Time (tau) = t_E * sqrt(1 - (v/c)^2)
+    """
+    print("--- Relativistic Space Travel Time Calculator ---")
+    try:
+        # Get input for distance (x) in light-years
+        x_light_years = float(input("Enter the distance to the planet (x, in light-years): "))
+        if x_light_years <= 0:
+            print("Distance must be greater than zero.")
+            return
+
+        # Get input for speed (v) as a fraction of the speed of light (c)
+        v_fraction_of_c = float(input("Enter the ship's speed (v/c, as a fraction, e.g., 0.99): "))
+
+        if not (0 < v_fraction_of_c < 1):
+            print("Speed must be a fraction of c (0 < v/c < 1).")
+            return
+
+    except ValueError:
+        print("Invalid input. Please enter numerical values only.")
+        return
+
+    # (a) Time in the Earth's rest frame (t_E)
+    # Since distance is in light-years and speed is a fraction of c, the time is in years.
+    t_earth = x_light_years / v_fraction_of_c
+
+    # Calculate the Lorentz factor reciprocal: 1/gamma
+    # 1/gamma = sqrt(1 - (v/c)^2)
+    lorentz_reciprocal = math.sqrt(1 - v_fraction_of_c**2)
+
+    # (b) Time in the ship's frame (tau - Proper Time)
+    # tau = t_E * (1/gamma)
+    tau_ship = t_earth * lorentz_reciprocal
+
+    print("\n--- Calculation Results ---")
+    print(f"Distance to planet: {x_light_years} light-years")
+    print(f"Ship's speed: {v_fraction_of_c} c")
+    print("-" * 35)
+
+    print(f"(a) Time in the rest frame of the observer on Earth:")
+    print(f"    t_Earth = {t_earth:.4f} years")
+
+    print(f"\n(b) Time as perceived by a passenger on board the ship (Proper Time):")
+    print(f"    tau_Ship = {tau_ship:.4f} years")
+    print("-" * 35)
+
+calculate_relativistic_travel_time()   # Function call
